@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 
+import { itemsActions } from '../../redux/items';
+
 import { FormPhoneBook, LabelPhoneBook, InputPhoneBook, ButtonPhoneBook } from './Form.styled';
-import { addItems } from '../../redux/items/items-actions';
+
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -33,7 +35,7 @@ export default function ContactForm() {
     evt.preventDefault();
     //console.log(name, number);
 
-    dispatch(addItems(name, number));
+    dispatch(itemsActions.addItems(name, number));
     reset();
   };
 

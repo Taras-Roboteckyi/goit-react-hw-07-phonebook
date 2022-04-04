@@ -1,43 +1,27 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
-import itemsReducer from './items/items-reducer';
+import { itemsReducer } from './items';
 
-const contactsPersistConfig = {
-  key: 'contactsKey',
-  storage,
-  blacklist: ['filter'], //Забирає властивість filter з localstorage, також існує whitelist-який включає властивість в localstorage
-};
-/* const rootReducer = combineReducers({
-  contacts: persistReducer(persistConfig, itemsReducer), //додає тільки окремий стан в localstorage
-}); */
-//const persistedReducer = persistReducer(persistConfig, rootReducer);//додає весь стан в localstorage
+//////Middleware-Прослойка///////////
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
 
 ////////Store///////////////////
 const store = configureStore({
   reducer: {
-    contacts: persistReducer(contactsPersistConfig, itemsReducer), //тут була силка на rootReducer
+    contacts: itemsReducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  middleware,
 });
 //console.log(store.getState());
 
-const persistor = persistStore(store);
+/* const persistor = persistStore(store); */
 
-export { store, persistor };
+export { store };

@@ -1,15 +1,14 @@
 import { nanoid } from 'nanoid';
-//import PropTypes from 'prop-types';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from '../../redux/items/items-selectors';
-import { changeFilter } from '../../redux/items/items-actions';
+import { itemsSelectors, itemsActions } from '../../redux/items';
 
 import { LabelFilterStyle, InputFilterStyle } from './Filter.styled';
 
 const generateId = nanoid();
 
 const Filter = () => {
-  const value = useSelector(getFilter);
+  const value = useSelector(itemsSelectors.getFilter);
   const dispatch = useDispatch();
 
   return (
@@ -20,7 +19,7 @@ const Filter = () => {
         name="filter"
         autoComplete="off"
         value={value}
-        onChange={e => dispatch(changeFilter(e.target.value))}
+        onChange={e => dispatch(itemsActions.changeFilter(e.target.value))}
         id={generateId}
       />
     </LabelFilterStyle>
@@ -28,8 +27,3 @@ const Filter = () => {
 };
 
 export default Filter;
-
-/* Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-}; */
