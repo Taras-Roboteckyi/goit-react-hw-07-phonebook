@@ -1,20 +1,21 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 
-import { itemsActions } from '../../redux/items';
+import { Api } from '../../redux/items';
 
 import { FormPhoneBook, LabelPhoneBook, InputPhoneBook, ButtonPhoneBook } from './Form.styled';
 
 export default function ContactForm() {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const dispatch = useDispatch();
+  //const [name, setName] = useState('');
+  //const [number, setNumber] = useState('');
+  //const dispatch = useDispatch();
+  const [createContact] = Api.useCreateContactsMutation();
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
-  const handleNameChange = event => {
+  /* const handleNameChange = event => {
     event.preventDefault();
 
     const { name, value } = event.currentTarget;
@@ -29,20 +30,27 @@ export default function ContactForm() {
       default:
         console.log(`Field type name - ${name} is not processed`);
     }
-  };
+  }; */
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
-    //console.log(name, number);
 
-    dispatch(itemsActions.addItems(name, number));
-    reset();
+    const name = evt.currentTarget.elements.name.value;
+    const number = evt.currentTarget.elements.number.value;
+    evt.currentTarget.reset();
+    console.log(name, number);
+    //dispatch(itemsActions.addItems(name, number));
+    try {
+      await createContact(name, number);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const reset = () => {
+  /* const reset = () => {
     setName('');
     setNumber('');
-  };
+  }; */
 
   return (
     <FormPhoneBook onSubmit={handleSubmit}>
@@ -55,8 +63,8 @@ export default function ContactForm() {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           autoComplete="off"
-          value={name}
-          onChange={handleNameChange}
+          /* value={name} */
+          //onChange={handleNameChange}
           id={nameInputId}
         />
       </LabelPhoneBook>
@@ -69,8 +77,8 @@ export default function ContactForm() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           autoComplete="off"
-          value={number}
-          onChange={handleNameChange}
+          /* value={number} */
+          //onChange={handleNameChange}
           id={numberInputId}
         />
       </LabelPhoneBook>

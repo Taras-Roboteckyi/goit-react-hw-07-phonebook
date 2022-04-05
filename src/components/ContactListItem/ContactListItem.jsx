@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { ListItemStyle, NameContactStyle, ButtonContactStyle } from './ContactListItem.styled';
 
 const ContactListItem = ({ data, onDeleteContact }) => {
-  const { number, name } = data;
+  const { phone, name } = data;
 
   /* console.log(data); */
   return (
     <ListItemStyle>
       <NameContactStyle>{name}:</NameContactStyle>
-      <NameContactStyle>{number}</NameContactStyle>
+      <NameContactStyle>{phone}</NameContactStyle>
       <ButtonContactStyle type="button" onClick={onDeleteContact}>
         Delete
       </ButtonContactStyle>
@@ -21,7 +21,7 @@ export default ContactListItem;
 
 ContactListItem.propTypes = {
   data: PropTypes.shape({
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }),
