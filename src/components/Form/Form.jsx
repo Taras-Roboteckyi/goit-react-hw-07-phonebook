@@ -1,56 +1,30 @@
-//import { useState } from 'react';
 import { nanoid } from 'nanoid';
-//import { useDispatch } from 'react-redux';
 
 import { Api } from '../../redux/items';
 
 import { FormPhoneBook, LabelPhoneBook, InputPhoneBook, ButtonPhoneBook } from './Form.styled';
 
 export default function ContactForm() {
-  //const [name, setName] = useState('');
-  //const [number, setNumber] = useState('');
-  //const dispatch = useDispatch();
   const [createContact] = Api.useCreateContactsMutation();
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
-  /* const handleNameChange = event => {
-    event.preventDefault();
-
-    const { name, value } = event.currentTarget;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        console.log(`Field type name - ${name} is not processed`);
-    }
-  }; */
-
   const handleSubmit = async evt => {
     evt.preventDefault();
 
     const name = evt.currentTarget.elements.name.value;
-    const number = evt.currentTarget.elements.number.value;
+    const phone = evt.currentTarget.elements.number.value;
     evt.currentTarget.reset();
-    console.log(name, number);
-    //dispatch(itemsActions.addItems(name, number));
+
+    //console.log(name, phone);
+
     try {
-      await createContact(name, number);
+      await createContact({ name, phone });
     } catch (error) {
       console.log(error);
     }
   };
-
-  /* const reset = () => {
-    setName('');
-    setNumber('');
-  }; */
 
   return (
     <FormPhoneBook onSubmit={handleSubmit}>
@@ -63,8 +37,6 @@ export default function ContactForm() {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           autoComplete="off"
-          /* value={name} */
-          //onChange={handleNameChange}
           id={nameInputId}
         />
       </LabelPhoneBook>
@@ -77,8 +49,6 @@ export default function ContactForm() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           autoComplete="off"
-          /* value={number} */
-          //onChange={handleNameChange}
           id={numberInputId}
         />
       </LabelPhoneBook>
