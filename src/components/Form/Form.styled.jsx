@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const FormPhoneBook = styled.form`
-  border-color: black;
-  border-style: solid;
+  /*  border-color: black;
+  border-style: solid; */
   padding: 20px;
   display: flex;
+  height: 195px;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 14%) 0px 1px 1px,
+  /* box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 14%) 0px 1px 1px,
     rgb(0 0 0 / 20%) 0px 2px 1px;
-  border-radius: 4px;
+  border-radius: 4px; */
 `;
 export const LabelPhoneBook = styled.label`
   padding-bottom: 20px;
@@ -27,7 +28,8 @@ export const InputPhoneBook = styled.input`
 `;
 
 export const ButtonPhoneBook = styled.button`
-  display: inline-flex;
+  display: block;
+  margin: 0 auto;
   padding: 5px 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   font-size: 16px;
