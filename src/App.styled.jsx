@@ -5,7 +5,7 @@ export const TitlePhoneBook = styled.h1`
   font-size: 35px;
   font-weight: 700;
   text-align: center;
-  color: royalblue;
+  color: ${props => props.theme.colors.primary};
   /* padding-top: 5px; */
   /* padding-bottom: 15px; */
 `;
@@ -30,4 +30,8 @@ export const Section = styled.section`
 export const SectionContact = styled.section`
   padding-bottom: 30px;
   /* padding-top: 30px; */
+`;
+
+export const ContainerList = styled.div`
+  padding: 30px;
 `;

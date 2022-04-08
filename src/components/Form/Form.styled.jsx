@@ -37,10 +37,11 @@ export const ButtonPhoneBook = styled.button`
   border: none;
   cursor: pointer;
   font-weight: 400;
-  background-color: gold;
+  background-color: ${props => props.theme.colors.secondPrimary};
 
   :hover {
     background-color: royalblue;
     transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: ${props => props.theme.colors.background};
   }
 `;

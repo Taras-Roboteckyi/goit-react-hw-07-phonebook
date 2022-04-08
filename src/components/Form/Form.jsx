@@ -1,4 +1,6 @@
 import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Api } from '../../redux/items';
 
@@ -21,6 +23,9 @@ export default function ContactForm() {
 
     try {
       await createContact({ name, phone });
+      toast.success('Congratulations, you have created a new contact!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
       console.log(error);
     }

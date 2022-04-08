@@ -1,11 +1,13 @@
-import styled from 'styled-components';
+import createGlobalStyle from 'styled-components';
 import imgBG from './images/bookPhone.jpg';
 
-export const Container = styled.div`
+export const GlobalStyles = createGlobalStyle.div`
   /*-----Скидування стилів------*/
 
   html {
     box-sizing: border-box;
+
+    
   }
   a {
     text-decoration: none;
@@ -31,7 +33,7 @@ export const Container = styled.div`
   }
   /*-------------Body--------------*/
   body {
-    background-color: #ffffff;
+        background-color: #ffffff;
 
     width: 100%;
     padding-left: 15px;

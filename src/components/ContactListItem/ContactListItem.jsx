@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { ImUser } from 'react-icons/im';
 
 import { ListItemStyle, NameContactStyle, ButtonContactStyle } from './ContactListItem.styled';
 
@@ -8,6 +9,7 @@ const ContactListItem = ({ data, onDeleteContact }) => {
   /* console.log(data); */
   return (
     <ListItemStyle>
+      <ImUser size={12} />
       <NameContactStyle>{name}:</NameContactStyle>
       <NameContactStyle>{phone}</NameContactStyle>
       <ButtonContactStyle type="button" onClick={onDeleteContact}>
