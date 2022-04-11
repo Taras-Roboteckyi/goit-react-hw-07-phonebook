@@ -30,6 +30,8 @@ export const GlobalStyles = createGlobalStyle.div`
   }
   img {
     display: block;
+    max-width: 100%;
+    object-fit: cover;
   }
   /*-------------Body--------------*/
   body {
