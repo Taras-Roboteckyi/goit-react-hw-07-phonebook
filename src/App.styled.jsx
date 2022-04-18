@@ -8,6 +8,10 @@ export const TitlePhoneBook = styled.h1`
   color: ${props => props.theme.colors.primary};
   /* padding-top: 5px; */
   /* padding-bottom: 15px; */
+
+  @-moz-document url-prefix() {
+    font-size: 30px;
+  }
 `;
 
 export const TitleContacts = styled.h2`
@@ -25,6 +29,13 @@ export const Section = styled.section`
 
   background-repeat: no-repeat;
   background-size: 240px 320px;
+
+  @-moz-document url-prefix() {
+    background-image: url(${imgPhone});
+
+    background-repeat: no-repeat;
+    background-size: 210px 320px;
+  }
 `;
 
 export const SectionContact = styled.section`
